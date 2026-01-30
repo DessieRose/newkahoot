@@ -2,7 +2,7 @@
 
 ### Todo
 
-- [x] Research WebSockets until monday.
+- [] Research WebSockets until monday.
 
 ### In Progress
 
