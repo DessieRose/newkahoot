@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(38, 77, 64);
+    margin: 0;
+}
+
+main {
+    text-align: center;
+}
+
+form {
+    display: grid;
+    justify-content: center;
+    background-color: white;
+    padding: 1rem;
+    margin: 0 35%;
+    border-radius: 0.5rem;
+}
+
+form input {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+#name {
+    text-align: center;
+    border: 0.1rem solid gray;
+}
+
+#submit {
+    background-color: grey;
+    color: white;
+    border: 0.1rem solid gray;
+}
