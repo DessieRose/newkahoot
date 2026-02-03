@@ -35,4 +35,5 @@ form input {
     background-color: grey;
     color: white;
     border: 0.1rem solid gray;
+    cursor: pointer;
 }
