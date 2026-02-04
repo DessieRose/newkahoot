@@ -1,9 +1,11 @@
 {
   "dependencies": {
     "dotenv": "^17.2.3",
+    "eiows": "^8.2.0",
     "express": "^5.2.1",
     "mongodb": "^7.0.0",
-    "mongoose": "^9.1.5"
+    "mongoose": "^9.1.5",
+    "socket.io": "^4.8.3"
   },
   "name": "newkahoot",
   "version": "1.0.0",
