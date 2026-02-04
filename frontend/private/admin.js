@@ -14,6 +14,6 @@ document.getElementById('restart-btn').addEventListener('click', () => {
 });
 
 // Listen for status updates
-// socket.on('status_update', (data) => {
-//     document.getElementById('game-status').innerText = data.message;
-// });
+socket.on('status_update', (data) => {
+    document.getElementById('game-status').innerText = data.message;
+});
