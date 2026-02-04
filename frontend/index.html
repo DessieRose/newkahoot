@@ -4,16 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css">
-    <title>newKahoot</title>
+    <title>Join Game | newKahoot</title>
   </head>
-  <body>
-    <main>
-      <h1>Welkome to newKahoot</h1>
-      <form>
-        <input type="text" placeholder="name" name="name" id="name">
-        <input type="submit" value="Join" id="submit">
-      </form>
+  <body class="player-join-screen">
+    <main class="login-container">
+      <div class="login-card">
+        <div class="icon-header">
+            <span class="game-icon">🎮</span>
+        </div>
+        <h1>newKahoot</h1>
+        <p class="p_index">Enter your nickname to join the lobby.</p>
 
+        <form id="join-form">
+          <div class="input-group">
+            <input type="text" placeholder="Nickname" name="name" id="name" required maxlength="15">
+          </div>
+          <button class="btn-index" type="submit" id="submit" class="btn-login">Join Game</button>
+        </form>
+      </div>
     </main>
   </body>
 </html>
