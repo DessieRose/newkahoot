@@ -82,8 +82,8 @@ button {
 #player-list {
     list-style: none;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10px;
 }
 
@@ -92,4 +92,14 @@ button {
     padding: 8px 15px;
     border-radius: 20px;
     font-size: 0.9rem;
+}
+
+.player-item {
+    background: #f4f4f9;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid #e94560;
 }
