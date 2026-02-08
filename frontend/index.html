@@ -24,16 +24,14 @@
       </div>
     </main>
     <script>
-      const form = document.getElementById('joinForm');
-
+      const form = document.getElementById('join-form'); 
+    
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-
-        const nickname = document.getElementById('nickname').value;
-
-        sessionStorage.setItem('nickname', nickname);
-
-        window.location.href = '/game.html';
+        
+        const nickname = document.getElementById('name').value;
+    
+        window.location.href = `/game?name=${encodeURIComponent(nickname)}`;
       });
     </script>
   </body>

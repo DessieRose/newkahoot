@@ -3,9 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./game.css">
     <title>Game</title>
   </head>
   <body>
+    <div id="lobby-screen">
+      <h1>Lobby</h1>
+      <p>⏳ Waiting for the host to start the game...</p>
+      <div class="loader"></div>
+
+      <div id="bubble-container"></div>
+    </div>
+
+    <div id="game-screen" class="hidden">
+      <h2 id="question-text">Question will appear here</h2>
+      <div id="answer-options"></div>
+    </div>
+
     <ul></ul>
   </body>
   <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
@@ -21,9 +35,41 @@
       }
     });
 
-    socket.on("updateUsers", (users) => {
-      const ul = document.querySelector("ul");
-      ul.innerHTML = users.map((name) => `<li>${name}</li>`).join("");
+    // socket.on("updateUsers", (users) => {
+    //   const ul = document.querySelector("ul");
+    //   ul.innerHTML = users.map((name) => `<li>${name}</li>`).join("");
+    // });
+
+    socket.on('personalWelcome', (name) => {
+      const display = document.getElementById('player-name-display');
+      if (display) display.innerText = name;
+      // document.getElementById('player-name-display').innerText = name;
+    });
+
+    socket.on('updateUsers', (users) => {
+      const container = document.getElementById("bubble-container");
+      container.innerHTML = "";
+
+      users.forEach(userName => {
+        const bubble = document.createElement('div');
+        bubble.className = "bubble";
+        bubble.innerHTML = userName;
+
+        const randomTop = Math.floor(Math.random() * 70);
+        const randomLeft = Math.floor(Math.random() * 80);
+
+        bubble.style.top = randomTop + "%";
+        bubble.style.left = randomLeft + "%";
+
+        bubble.style.animationDelay = (Math.random() * 5) + "s";
+
+        container.appendChild(bubble);
+      });
+    });
+    
+    socket.on('gameStarted', () => {
+      document.getElementById('lobby-screen').classList.add('hidden');
+      document.getElementById('game-screen').classList.remove('hidden');
     });
   </script>
 </html>
