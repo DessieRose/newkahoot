@@ -3,35 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
     <title>Join Game | newKahoot</title>
   </head>
   <body class="player-join-screen">
     <main class="login-container">
       <div class="login-card">
         <div class="icon-header">
-            <span class="game-icon">🎮</span>
+          <span class="game-icon">🎮</span>
         </div>
         <h1>newKahoot</h1>
         <p class="p_index">Enter your nickname to join the lobby.</p>
 
         <form id="join-form">
           <div class="input-group">
-            <input type="text" placeholder="Nickname" name="name" id="name" required maxlength="10">
+            <input
+              type="text"
+              placeholder="Nickname"
+              name="name"
+              id="name"
+              required
+              maxlength="10"
+            />
           </div>
-          <button class="btn-index" type="submit" id="submit" class="btn-login">Join Game</button>
+          <button class="btn-index" type="submit" id="submit" class="btn-login">
+            Join Game
+          </button>
         </form>
       </div>
     </main>
     <script>
-      const form = document.getElementById('join-form'); 
-    
-      form.addEventListener('submit', (e) => {
+      const form = document.getElementById("join-form");
+
+      form.addEventListener("submit", (e) => {
         e.preventDefault();
-        
-        const nickname = document.getElementById('name').value;
-    
-        window.location.href = `/game?name=${encodeURIComponent(nickname)}`;
+
+        const nickname = document.getElementById("name").value;
+
+        window.location.href = `/frontend/game?name=${encodeURIComponent(nickname)}`;
       });
     </script>
   </body>

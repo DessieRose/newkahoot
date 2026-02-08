@@ -62,3 +62,24 @@ body {
 .hidden {
     display: none;
 }
+
+.answer-btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid #333;
+  background: white;
+  border-radius: 8px;
+}
+
+.answer-btn:hover:not(:disabled) {
+  background: #f0f0f0;
+}
+
+.answer-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

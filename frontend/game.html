@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./game.css">
+    <link rel="stylesheet" href="./game.css" />
     <title>Game</title>
   </head>
   <body>
@@ -40,18 +40,18 @@
     //   ul.innerHTML = users.map((name) => `<li>${name}</li>`).join("");
     // });
 
-    socket.on('personalWelcome', (name) => {
-      const display = document.getElementById('player-name-display');
+    socket.on("personalWelcome", (name) => {
+      const display = document.getElementById("player-name-display");
       if (display) display.innerText = name;
       // document.getElementById('player-name-display').innerText = name;
     });
 
-    socket.on('updateUsers', (users) => {
+    socket.on("updateUsers", (users) => {
       const container = document.getElementById("bubble-container");
       container.innerHTML = "";
 
-      users.forEach(userName => {
-        const bubble = document.createElement('div');
+      users.forEach((userName) => {
+        const bubble = document.createElement("div");
         bubble.className = "bubble";
         bubble.innerHTML = userName;
 
@@ -61,15 +61,43 @@
         bubble.style.top = randomTop + "%";
         bubble.style.left = randomLeft + "%";
 
-        bubble.style.animationDelay = (Math.random() * 5) + "s";
+        bubble.style.animationDelay = Math.random() * 5 + "s";
 
         container.appendChild(bubble);
       });
     });
-    
-    socket.on('gameStarted', () => {
-      document.getElementById('lobby-screen').classList.add('hidden');
-      document.getElementById('game-screen').classList.remove('hidden');
+
+    socket.on("newQuestion", (question) => {
+      console.log("📝 Received question:", question);
+
+      // Display the question
+      document.getElementById("question-text").innerText = question.question;
+
+      // Display the answer options
+      const optionsContainer = document.getElementById("answer-options");
+      optionsContainer.innerHTML = "";
+
+      question.answers.forEach((answer, index) => {
+        const button = document.createElement("button");
+        button.innerText = answer.text;
+        button.className = "answer-btn";
+        button.onclick = () => {
+          socket.emit("submitAnswer", answer);
+          document
+            .querySelectorAll(".answer-btn")
+            .forEach((btn) => (btn.disabled = true));
+        };
+        optionsContainer.appendChild(button);
+      });
+    });
+
+    socket.on("gameStarted", () => {
+      document.getElementById("lobby-screen").classList.add("hidden");
+      document.getElementById("game-screen").classList.remove("hidden");
+    });
+
+    socket.on("reloadPage", () => {
+      window.location.reload();
     });
   </script>
 </html>
