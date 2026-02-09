@@ -19,5 +19,8 @@
   "homepage": "https://github.com/amin/newkahoot#readme",
   "devDependencies": {
     "nodemon": "^3.1.11"
+  },
+  "dependencies": {
+    "@socket.io/admin-ui": "^0.5.1"
   }
 }
