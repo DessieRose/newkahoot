@@ -20,6 +20,12 @@
       <div id="answer-options"></div>
     </div>
 
+    <div id="winner-screen" class="hidden">
+      <h1>🏆 Winners! 🏆</h1>
+      <div id="leaderboard"></div>
+      <button onclick="location.href='/'">Play Again</button>
+    </div>
+
     <ul></ul>
   </body>
   <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
@@ -98,6 +104,21 @@
 
     socket.on("reloadPage", () => {
       window.location.reload();
+    });
+
+    socket.on("showWinners", (winners) => {
+      // Hide game screen
+      document.getElementById("game-screen").classList.add("hidden");
+      // Show winner screen
+      document.getElementById("winner-screen").classList.remove("hidden");
+
+      const board = document.getElementById("leaderboard");
+      board.innerHTML = winners.map((player, index) => `
+          <div class="winner-row ${index === 0 ? 'first-place' : ''}">
+              <span>${index + 1}. ${player.nickname}</span>
+              <span>${player.score} pts</span>
+          </div>
+      `).join("");
     });
   </script>
 </html>
