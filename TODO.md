@@ -9,7 +9,6 @@
 
 ### Design
 
-- [] Create the style for lobby
 - [] Create the style for winners
 
 ### Structure
@@ -37,6 +36,7 @@
 
 ### Design
 
+- [] Create the style for lobby
 - [] Create a landing page design (css)
 - [] Create a Admin design
 - [] Choose a color scheme for the app/web application
