@@ -29,17 +29,6 @@ export function startGameserver() {
       questionTimer = setTimeout(nextQuestion, question.timeLimit * 1000);
     } else {
       io.emit("gameEnd", game.leaderboard);
-      console.log("🏁 Game finished!");
-
-      // // Wait 3 seconds, then reset and reload
-      // setTimeout(() => {
-      //   console.log("🔄 Restarting game...");
-      //   game.reset();
-      //   clearTimeout(questionTimer);
-      //   questionTimer = null;
-      //   currentAnswers.clear();
-      //   io.emit("reloadPage"); // Changed from "restartGame"
-      // }, 3000);
     }
   }
 
