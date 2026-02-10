@@ -32,15 +32,23 @@
         </form>
       </div>
     </main>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script>
+      const socket = io("http://localhost:3000");
       const form = document.getElementById("join-form");
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
-
         const nickname = document.getElementById("name").value;
 
-        window.location.href = `/game?name=${encodeURIComponent(nickname)}`;
+        socket.emit("checkName", nickname, (available) => {
+          if (available) {
+            window.location.href = `/game?name=${encodeURIComponent(nickname)}`;
+          } else {
+            alert("Name already taken!");
+          }
+        });
       });
     </script>
   </body>

@@ -47,6 +47,10 @@ export function startGameserver(server) {
       nextQuestion();
     });
 
+    socket.on("checkName", (name, callback) => {
+      callback(game.checkNameAvailability(name));
+    });
+
     socket.on("admin_restart_system", () => {
       console.log("🔄 Restarting game...");
       game.reset();
