@@ -17,6 +17,11 @@
 
 - [] Create 10 questions
 - [] Create 3 different answers to the 10 different questions
+- [] Clock counting down how long time the player has
+- [] When admin presses start game, delay before the game starts
+- [] status on admin panel
+- [] active question on the admin page
+- [] if more then one person have an equal score both players should be on the winner scoreboard. (same color)
 
 
 
