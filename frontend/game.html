@@ -16,6 +16,10 @@
     </div>
 
     <div id="game-screen" class="hidden">
+      <div id="timer-container">
+        <span id="timer-seconds">0</span>
+      </div>
+
       <h2 id="question-text">Question will appear here</h2>
       <div id="answer-options"></div>
     </div>
@@ -34,6 +38,8 @@
     const name = params.get("name");
 
     const socket = io("http://localhost:3000");
+
+    let countdownInterval;
 
     socket.on("connect", () => {
       if (name) {
@@ -105,7 +111,32 @@
         };
         optionsContainer.appendChild(button);
       });
+
+      clearInterval(countdownInterval);
+      const timerDisplay = document.getElementById("timer-seconds");
+      const timerContainer = document.getElementById("timer-container");
+      timerContainer.classList.remove("timer-low");
+
+      let timeLeft = question.timeLimit;
+
+      const updateTimer = () => {
+        timerDisplay.innerText = timeLeft;
+
+        if (timeLeft <= 5) {
+            timerContainer.classList.add("timer-low");
+        }
+
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            // Lock buttons if time hits zero
+            document.querySelectorAll(".answer-btn").forEach(btn => btn.disabled = true);
+        }
+        timeLeft--;
+      };
+      updateTimer(); // Run once immediately
+      countdownInterval = setInterval(updateTimer, 1000);
     });
+  
 
     
 

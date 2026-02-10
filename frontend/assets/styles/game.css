@@ -145,8 +145,42 @@ body {
     }
 }
 
+/* --- Clock countdown --- */
+#timer-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
+    box-shadow: 0 0 15px rgba(233, 69, 96, 0.2);
+}
 
-/* Winner screen */
+#timer-seconds {
+    font-family: 'Courier New', Courier, monospace; /* Monospace looks like a digital clock */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-pink);
+    text-shadow: 0 0 8px var(--text-pink);
+}
+
+.timer-low {
+    animation: pulse-red 0.5s infinite alternate;
+    border-color: var(--text-pink) !important;
+}
+
+@keyframes pulse-red {
+    from { transform: scale(1); box-shadow: 0 0 10px var(--text-pink); }
+    to { transform: scale(1.1); box-shadow: 0 0 20px var(--text-pink); }
+}
+
+
+/* --- Winner screen --- */
 #winner-screen {
     text-align: center;
     padding: 50px;
