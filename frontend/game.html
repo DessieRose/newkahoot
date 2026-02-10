@@ -87,15 +87,20 @@
         const button = document.createElement("button");
         button.innerText = answer.text;
         button.className = "answer-btn";
+        button.className = `answer-btn btn-${index}`;
         button.onclick = () => {
           socket.emit("submitAnswer", answer);
-          document
-            .querySelectorAll(".answer-btn")
-            .forEach((btn) => (btn.disabled = true));
+          document.querySelectorAll(".answer-btn").forEach((btn) => {
+          btn.disabled = true;
+          btn.innerText = "✓ Submitted";
+          });
+          button.innerText = "Selected: " + answer.text;
         };
         optionsContainer.appendChild(button);
       });
     });
+
+    
 
     socket.on("gameStarted", () => {
       document.getElementById("lobby-screen").classList.add("hidden");
