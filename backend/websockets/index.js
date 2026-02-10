@@ -6,8 +6,8 @@ import { questions } from "./data/questions.js";
 
 const game = new Game(questions);
 
-export function startGameserver() {
-  const io = new Server(3000, {
+export function startGameserver(server) {
+  const io = new Server(server, {
     wsEngine: eiows.Server,
     cors: {
       origin: "*",
