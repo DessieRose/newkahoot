@@ -33,12 +33,17 @@ export function startGameserver(server) {
   }
 
   io.on("connection", (socket) => {
-    socket.on("joinGame", (playerName) => {
+    socket.on("joinGame", (playerName, callback) => {
+      if (!game.checkNameAvailability(playerName)) {
+        if (callback) callback({ success: false, error: "Name already taken" });
+        return;
+      }
       game.addPlayer(new Player(socket.id, playerName));
       io.emit(
         "updateUsers",
         game.playerEntries.map(([id, p]) => p.name).sort(),
       );
+      if (callback) callback({ success: true });
     });
 
     socket.on("admin_start_game", () => {
