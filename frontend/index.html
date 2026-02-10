@@ -26,6 +26,7 @@
               maxlength="10"
             />
           </div>
+          <p id="error-message" class="error-hidden"></p>
           <button class="btn-index" type="submit" id="submit" class="btn-login">
             Join Game
           </button>
@@ -35,6 +36,9 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script>
+      const errorDisplay = document.getElementById('error-message');
+      const nicknameInput = document.getElementById('name');
+      const formId = document.getElementById('your-form-id');
       const socket = io("http://localhost:3000");
       const form = document.getElementById("join-form");
 
@@ -46,7 +50,8 @@
           if (available) {
             window.location.href = `/game?name=${encodeURIComponent(nickname)}`;
           } else {
-            alert("Name already taken!");
+            errorDisplay.innerText = "⚠️ This nickname is already taken!";
+            errorDisplay.className = 'error-text';
           }
         });
       });

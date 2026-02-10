@@ -85,3 +85,17 @@ body {
     transition: transform 0.2s, background-color 0.2s;
 }
 
+.error-text {
+    color: var(--text-pink);
+    font-size: 0.85rem;
+    margin: 10px 0; /* Add a little margin only when it's visible */
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(233, 69, 96, 0.4);
+    display: block; /* Show it */
+}
+
+.error-hidden {
+    display: none;
+    min-height: 1.2rem;
+}
