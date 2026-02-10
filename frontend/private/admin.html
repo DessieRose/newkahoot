@@ -1,50 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="/admin.css">
+  <head>
+    <link rel="stylesheet" href="/assets/styles/admin.css" />
     <title>Quiz Control Center</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="dashboard">
-        <aside class="sidebar">
-            <h2>Admin Panel</h2>
-            <nav>
-                <div class="status-box">
-                    <p>Status: <span id="game-status">IDLE</span></p>
-                    <p>Players: <span id="player-count">0</span></p>
-                </div>
-            </nav>
-            <button id="restart-btn" class="btn-secondary">🔄 Restart System</button>
-        </aside>
+      <aside class="sidebar">
+        <h2>Admin Panel</h2>
+        <nav>
+          <div class="status-box">
+            <p>Status: <span id="game-status">IDLE</span></p>
+            <p>Players: <span id="player-count">0</span></p>
+          </div>
+        </nav>
+        <button id="restart-btn" class="btn-secondary">
+          🔄 Restart System
+        </button>
+      </aside>
 
-        <main class="main-content">
-            <header>
-                <h1>Game Management</h1>
-            </header>
+      <main class="main-content">
+        <header>
+          <h1>Game Management</h1>
+        </header>
 
-            <section class="control-cards">
-                <div class="card">
-                    <h3>Game Launch</h3>
-                    <p>Wait for all players to join the lobby before starting.</p>
-                    <button id="start-btn" class="btn-primary">🚀 Start Game</button>
-                </div>
+        <section class="control-cards">
+          <div class="card">
+            <h3>Game Launch</h3>
+            <p>Wait for all players to join the lobby before starting.</p>
+            <button id="start-btn" class="btn-primary">🚀 Start Game</button>
+          </div>
 
-                <div class="card">
-                    <h3>Active Question</h3>
-                    <div id="question-preview">
-                        <p class="placeholder">Game has not started yet.</p>
-                    </div>
-                </div>
-            </section>
+          <div class="card">
+            <h3>Active Question</h3>
+            <div id="question-preview">
+              <p class="placeholder">Game has not started yet.</p>
+            </div>
+          </div>
+        </section>
 
-            <section class="lobby">
-                <h3>Connected Players</h3>
-                <ul id="player-list">
-                    </ul>
-            </section>
-        </main>
+        <section class="lobby">
+          <h3>Connected Players</h3>
+          <ul id="player-list"></ul>
+        </section>
+      </main>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script src="/admin.js"></script>
-</body>
+  </body>
 </html>

@@ -28,18 +28,18 @@ export function startGameserver() {
       io.emit("newQuestion", question);
       questionTimer = setTimeout(nextQuestion, question.timeLimit * 1000);
     } else {
-      io.emit("gameOver");
+      io.emit("gameEnd", game.leaderboard);
       console.log("🏁 Game finished!");
 
-      // Wait 3 seconds, then reset and reload
-      setTimeout(() => {
-        console.log("🔄 Restarting game...");
-        game.reset();
-        clearTimeout(questionTimer);
-        questionTimer = null;
-        currentAnswers.clear();
-        io.emit("reloadPage"); // Changed from "restartGame"
-      }, 3000);
+      // // Wait 3 seconds, then reset and reload
+      // setTimeout(() => {
+      //   console.log("🔄 Restarting game...");
+      //   game.reset();
+      //   clearTimeout(questionTimer);
+      //   questionTimer = null;
+      //   currentAnswers.clear();
+      //   io.emit("reloadPage"); // Changed from "restartGame"
+      // }, 3000);
     }
   }
 
@@ -50,12 +50,21 @@ export function startGameserver() {
         "updateUsers",
         game.playerEntries.map(([id, p]) => p.name).sort(),
       );
+    });
 
-      if (game.playerEntries.length === 2) {
-        console.log("🎮 Game starting!");
-        io.emit("gameStarted");
-        nextQuestion();
-      }
+    socket.on("admin_start_game", () => {
+      console.log("🎮 Game starting!");
+      io.emit("gameStarted");
+      nextQuestion();
+    });
+
+    socket.on("admin_restart_system", () => {
+      console.log("🔄 Restarting game...");
+      game.reset();
+      clearTimeout(questionTimer);
+      questionTimer = null;
+      currentAnswers.clear();
+      io.emit("reloadPage");
     });
 
     socket.on("submitAnswer", (answer) => {
@@ -71,15 +80,6 @@ export function startGameserver() {
         console.log("✅ All players answered!");
         nextQuestion();
       }
-    });
-
-    socket.on("restartGame", () => {
-      console.log("🔄 Restarting game...");
-      game.reset();
-      clearTimeout(questionTimer);
-      questionTimer = null;
-      currentAnswers.clear();
-      io.emit("reloadPage");
     });
 
     socket.on("disconnect", () => {

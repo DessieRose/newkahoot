@@ -1,14 +1,23 @@
 export default class Player {
   id;
   name;
+  score;
 
   constructor(id, name) {
     this.id = id;
     this.name = name;
-    this.points = 0;
+    this.score = 0;
+  }
+
+  get name() {
+    return this.name;
+  }
+
+  get score() {
+    return this.score;
   }
 
   addPoint() {
-    this.points++;
+    this.score += 10;
   }
 }

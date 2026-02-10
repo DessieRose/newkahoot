@@ -33,6 +33,10 @@ export default class Game {
     return [...this.#players.entries()];
   }
 
+  get leaderboard() {
+    return [...this.#players.entries()].sort((a, b) => b[1].score - a[1].score);
+  }
+
   get gameOver() {
     return this.#gameOver;
   }
