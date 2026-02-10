@@ -16,6 +16,15 @@ export default class Game {
     return this.#questions[this.#currentQuestionIndex++];
   }
 
+  checkNameAvailability(name) {
+    for (const [, player] of this.#players) {
+      if (player.name.toLowerCase() === name.toLowerCase()) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   addPlayer(player) {
     this.#players.set(player.id, player);
   }
