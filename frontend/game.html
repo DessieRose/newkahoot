@@ -90,11 +90,18 @@
         button.className = `answer-btn btn-${index}`;
         button.onclick = () => {
           socket.emit("submitAnswer", answer);
-          document.querySelectorAll(".answer-btn").forEach((btn) => {
-          btn.disabled = true;
-          btn.innerText = "✓ Submitted";
-          });
-          button.innerText = "Selected: " + answer.text;
+          const allButtons = document.querySelectorAll(".answer-btn");
+            allButtons.forEach((btn) => {
+              btn.disabled = true; // Stop further clicks
+
+              if (btn === button) {
+                  // This is the one you chose!
+                  btn.classList.add('selected');
+              } else {
+                  // These are the others - dim them out
+                  btn.classList.add('unselected');
+              }
+            });
         };
         optionsContainer.appendChild(button);
       });

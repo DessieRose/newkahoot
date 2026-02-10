@@ -104,6 +104,20 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
+.answer-btn.selected {
+    border-color: var(--text-pink);
+    background-color: var(--accent);
+    opacity: 1 !important;
+    box-shadow: 0 0 20px rgba(233, 69, 96, 0.6);
+    transform: translateY(2px);
+}
+
+.answer-btn.unselected {
+    opacity: 0.2;
+    filter: grayscale(0.8);
+    cursor: not-allowed;
+}
+
 .answer-btn:hover:not(:disabled) {
     border-color: var(--text-pink);
     background-color: var(--accent);
