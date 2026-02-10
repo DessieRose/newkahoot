@@ -92,7 +92,7 @@ export function startGameserver(server) {
 
       console.log(`Player ${player.name} answered:`, answer.text);
       if (answer.correct) {
-        player.addPoint();
+        player.addScore();
       }
 
       currentAnswers.set(socket.id, answer);
