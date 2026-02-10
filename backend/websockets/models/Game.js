@@ -1,8 +1,11 @@
 export default class Game {
   #players = new Map();
   #questions;
+  #status = "idle";
   #currentQuestionIndex = 0;
   #gameOver = false;
+
+  static STATUSES = ["idle", "active"];
 
   constructor(questions) {
     this.#questions = questions;
@@ -28,6 +31,7 @@ export default class Game {
   addPlayer(player) {
     this.#players.set(player.id, player);
   }
+
   getPlayer(id) {
     return this.#players.get(id);
   }
@@ -36,6 +40,21 @@ export default class Game {
     this.#players.clear();
     this.#currentQuestionIndex = 0;
     this.#gameOver = false;
+    this.#status = "idle";
+  }
+
+  get status() {
+    return this.#status;
+  }
+
+  setStatus(status) {
+    if (!Game.STATUSES.includes(status)) {
+      throw new Error(
+        `Invalid status: ${status}. Must be one of: ${Game.STATUSES.join(", ")}`,
+      );
+    }
+    this.#status = status;
+    return this.#status;
   }
 
   get playerEntries() {
@@ -53,6 +72,7 @@ export default class Game {
   removePlayer(id) {
     return this.#players.delete(id);
   }
+
   get playerCount() {
     return this.#players.size;
   }
