@@ -19,6 +19,10 @@ socket.on("status_update", (data) => {
   document.getElementById("game-status").innerText = data.message;
 });
 
+socket.on("newQuestion", (question) => {
+  document.querySelector(".active-question").innerText = question.question;
+});
+
 socket.on("updateUsers", (users) => {
   const countSpan = document.getElementById("player-count");
   if (countSpan) {
