@@ -12,9 +12,6 @@
 
 ### Other
 
-- [] When admin presses start game, delay before the game starts
-
-
 ## In Progress
 
 ### Pages
@@ -62,6 +59,7 @@
 - [X] status on admin panel
 - [X] active question on the admin page
 - [X] if more then one person have an equal score both players should be on the winner scoreboard. (same color)
+- [X] When admin presses start game, delay before the game starts
 
 ### Other
 
