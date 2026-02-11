@@ -17,6 +17,11 @@ document.getElementById("restart-btn").addEventListener("click", () => {
   }
 });
 
+socket.on("gameEnd", () => {
+  document.querySelector(".active-question").innerText =
+    "Game has not started yet. ";
+});
+
 socket.on("status_update", (data) => {
   document.getElementById("game-status").innerText = data.message;
 });
