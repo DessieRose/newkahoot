@@ -33,7 +33,24 @@ export default class Game {
   }
 
   get leaderboard() {
-    return [...this.#players.entries()].sort((a, b) => b[1].score - a[1].score);
+    const sorted = [...this.#players.entries()].sort(
+      (a, b) => b[1].score - a[1].score,
+    );
+
+    const grouped = [];
+    for (const [, player] of sorted) {
+      const last = grouped[grouped.length - 1];
+      if (last && last.score === player.score) {
+        last.names.push(player.name);
+      } else {
+        grouped.push({ score: player.score, names: [player.name] });
+      }
+    }
+
+    return grouped.map((group) => ({
+      score: group.score,
+      name: group.names.join(" || "),
+    }));
   }
 
   addPlayer(player) {
