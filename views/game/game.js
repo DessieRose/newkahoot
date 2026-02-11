@@ -14,17 +14,6 @@ socket.on("connect", () => {
   });
 });
 
-// socket.on("updateUsers", (users) => {
-//   const ul = document.querySelector("ul");
-//   ul.innerHTML = users.map((name) => `<li>${name}</li>`).join("");
-// });
-
-socket.on("personalWelcome", (name) => {
-  const display = document.getElementById("player-name-display");
-  if (display) display.innerText = name;
-  // document.getElementById('player-name-display').innerText = name;
-});
-
 socket.on("updateUsers", (users) => {
   const container = document.getElementById("bubble-container");
   container.innerHTML = "";
