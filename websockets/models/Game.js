@@ -3,6 +3,7 @@ import Player from "./Player.js";
 export default class Game {
   #players = new Map();
   #questions;
+  #currentQuestion;
   #status = "Idle";
   #io;
   #currentQuestionIndex = 0;
@@ -31,9 +32,24 @@ export default class Game {
   }
 
   get leaderboard() {
-    return [...this.#players.values()]
-      .sort((a, b) => b.score - a.score)
-      .map((p) => ({ name: p.name, score: p.score }));
+    const sorted = [...this.#players.entries()].sort(
+      (a, b) => b[1].score - a[1].score,
+    );
+
+    const grouped = [];
+    for (const [, player] of sorted) {
+      const last = grouped[grouped.length - 1];
+      if (last && last.score === player.score) {
+        last.names.push(player.name);
+      } else {
+        grouped.push({ score: player.score, names: [player.name] });
+      }
+    }
+
+    return grouped.map((group) => ({
+      score: group.score,
+      name: group.names.join(" & "),
+    }));
   }
 
   #setStatus(status) {
@@ -86,12 +102,12 @@ export default class Game {
       return;
     }
 
-    const question = this.#questions[this.#currentQuestionIndex++];
-    console.log("📤 Sending question:", question.question);
-    this.#io.emit("newQuestion", question);
+    this.#currentQuestion = this.#questions[this.#currentQuestionIndex++];
+    console.log("📤 Sending question:", this.#currentQuestion.question);
+    this.#io.emit("newQuestion", this.#currentQuestion);
     this.#questionTimer = setTimeout(
       () => this.nextQuestion(),
-      question.timeLimit * 1000,
+      this.#currentQuestion.timeLimit * 1000,
     );
   }
 
@@ -100,7 +116,8 @@ export default class Game {
     if (!player) return;
 
     console.log(`Player ${player.name} answered:`, answer.text);
-    if (answer.correct) player.addScore();
+
+    if (answer == this.#currentQuestion.correctAnswerId) player.addScore();
 
     this.#currentAnswers.set(socketId, answer);
     if (this.#currentAnswers.size === this.playerCount) {
@@ -140,6 +157,7 @@ export default class Game {
     this.#questionTimer = null;
     this.#currentAnswers.clear();
     this.#players.clear();
+    this.#currentQuestion = null;
     this.#currentQuestionIndex = 0;
     this.#setStatus("Idle");
   }

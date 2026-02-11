@@ -51,7 +51,7 @@ socket.on("newQuestion", (question) => {
     button.className = "answer-btn";
     button.className = `answer-btn btn-${index}`;
     button.onclick = () => {
-      socket.emit("submitAnswer", answer);
+      socket.emit("submitAnswer", answer.id);
       const allButtons = document.querySelectorAll(".answer-btn");
       allButtons.forEach((btn) => {
         btn.disabled = true; // Stop further clicks
@@ -120,11 +120,6 @@ socket.on("countdown", (seconds) => {
 });
 
 socket.on("gameStarted", () => {
-  document.getElementById("lobby-screen").classList.add("hidden");
-  document.getElementById("game-screen").classList.remove("hidden");
-});
-
-socket.on("rejoinGame", () => {
   document.getElementById("lobby-screen").classList.add("hidden");
   document.getElementById("game-screen").classList.remove("hidden");
 });
