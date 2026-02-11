@@ -89,6 +89,13 @@ export default class Game {
     this.#players.delete(id);
     this.#currentAnswers.delete(id);
     this.broadcastUsers();
+
+    if (
+      this.#status === "Active" &&
+      this.#currentAnswers.size >= this.playerCount
+    ) {
+      this.nextQuestion();
+    }
   }
 
   nextQuestion() {
@@ -117,7 +124,7 @@ export default class Game {
 
     console.log(`Player ${player.name} answered:`, answer.text);
 
-    if (answer == this.#currentQuestion.correctAnswerId) player.addScore();
+    if (answer === this.#currentQuestion.correctAnswerId) player.addScore();
 
     this.#currentAnswers.set(socketId, answer);
     if (this.#currentAnswers.size === this.playerCount) {
