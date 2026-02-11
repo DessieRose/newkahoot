@@ -1,4 +1,5 @@
 const params = new URLSearchParams(window.location.search);
+const gameMusic = document.getElementById("game-bg-music");
 const name = params.get("name");
 const socket = io();
 
@@ -12,6 +13,17 @@ socket.on("connect", () => {
     }
   });
 });
+
+const startMusic = () => {
+  if (gameMusic.paused) {
+      gameMusic.play().catch(err => {
+          console.log("Autoplay prevented. Music will start on first click.");
+      });
+      gameMusic.volume = 0.3; // Keep it slightly lower for focus
+  }
+};
+
+
 
 socket.on("updateUsers", (users) => {
   const container = document.getElementById("bubble-container");
@@ -97,7 +109,9 @@ socket.on("newQuestion", (question) => {
 socket.on("gameStarted", () => {
   document.getElementById("lobby-screen").classList.add("hidden");
   document.getElementById("game-screen").classList.remove("hidden");
+  startMusic();
 });
+document.addEventListener('click', startMusic, { once: true });
 
 socket.on("reloadPage", () => {
   window.location.reload();
