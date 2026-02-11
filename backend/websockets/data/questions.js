@@ -8,7 +8,7 @@ export const questions = [
       { text: "Berlin", correct: false },
       { text: "Madrid", correct: false },
     ],
-    timeLimit: 20,
+    timeLimit: 15,
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const questions = [
       { text: "Jupiter", correct: false },
       { text: "Saturn", correct: false },
     ],
-    timeLimit: 20,
+    timeLimit: 15,
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ export const questions = [
       { text: "Leonardo da Vinci", correct: true },
       { text: "Michelangelo", correct: false },
     ],
-    timeLimit: 20,
+    timeLimit: 15,
   },
   {
     id: 5,
@@ -52,6 +52,6 @@ export const questions = [
       { text: "Arctic Ocean", correct: false },
       { text: "Pacific Ocean", correct: true },
     ],
-    timeLimit: 20,
+    timeLimit: 15,
   },
 ];
