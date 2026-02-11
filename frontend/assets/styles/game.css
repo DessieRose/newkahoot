@@ -68,14 +68,17 @@ body {
 /* --- Questions Design --- */
 
 #game-screen {
+    display: grid;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    justify-items: center;
 }
+
 
 #question-text {
     font-size: 2.2rem;
-    margin-bottom: 40px;
+    margin: 40px;
     text-align: center;
     padding: 0 20px;
     text-shadow: 0 0 10px rgba(233, 69, 96, 0.3); /* Subtle pink glow */
@@ -142,6 +145,7 @@ body {
     }
     #question-text {
         font-size: 1.6rem;
+        margin-top: 90px;
     }
 }
 
@@ -178,7 +182,6 @@ body {
     from { transform: scale(1); box-shadow: 0 0 10px var(--text-pink); }
     to { transform: scale(1.1); box-shadow: 0 0 20px var(--text-pink); }
 }
-
 
 /* --- Winner screen --- */
 #winner-screen {
