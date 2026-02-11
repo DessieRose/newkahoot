@@ -1,17 +1,17 @@
 import express from "express";
-import session from "express-session";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const staticPath = path.join(__dirname, "./views/admin/");
 
 const router = express.Router();
+router.use(express.static(staticPath));
 
-// Admin route - redirect based on auth status
 router.get("/", (req, res) => {
   if (req.session.isAdmin) {
-    res.sendFile(path.join(__dirname, "/../../frontend/private/admin.html"));
+    res.sendFile(path.join(__dirname, "/../views/admin/dashboard.html"));
   } else {
     res.redirect("/admin/login");
   }
@@ -21,7 +21,7 @@ router.get("/login", (req, res) => {
   if (req.session.isAdmin) {
     res.redirect("/admin");
   } else {
-    res.sendFile(path.join(__dirname, "/../../frontend/login.html"));
+    res.sendFile(path.join(__dirname, "/../views/admin/login.html"));
   }
 });
 

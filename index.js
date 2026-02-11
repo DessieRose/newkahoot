@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 import session from "express-session";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const staticPath = path.join(__dirname, "../frontend");
+const staticPath = path.join(__dirname, "./views");
 
 const app = express();
 const server = createServer(app);
@@ -35,11 +35,11 @@ import adminRouter from "./routes/adminRouter.js";
 app.use("/admin", adminRouter);
 
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend/index.html"));
+  res.sendFile(path.resolve(__dirname, "./views/game/index.html"));
 });
 
 app.get("/game", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend/game.html"));
+  res.sendFile(path.resolve(__dirname, "./views/game/game.html"));
 });
 
 startGameserver(server);

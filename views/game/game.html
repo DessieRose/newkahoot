@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/game/game.css" />
+    <title>Game | newKahoot</title>
+  </head>
+  <body>
+    <div id="lobby-screen">
+      <h1>Lobby</h1>
+      <p>⏳ Waiting for the host to start the game...</p>
+      <div class="loader"></div>
+
+      <div id="bubble-container"></div>
+    </div>
+
+    <div id="game-screen" class="hidden">
+      <div id="timer-container">
+        <span id="timer-seconds">0</span>
+      </div>
+
+      <h2 id="question-text">Question will appear here</h2>
+      <div id="answer-options"></div>
+    </div>
+
+    <div id="winner-screen" class="hidden">
+      <h1>🏆 Winners! 🏆</h1>
+      <div id="leaderboard"></div>
+      <button class="btn-play-again" onclick="location.href = '/'">
+        Play Again
+      </button>
+    </div>
+
+    <ul></ul>
+  </body>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="/game/game.js"></script>
+</html>

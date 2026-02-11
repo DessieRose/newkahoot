@@ -4,9 +4,6 @@
     "eiows": "^8.2.0",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
-    "mongodb": "^7.0.0",
-    "mongoose": "^9.1.5",
-    "nodemon": "^3.1.11",
     "socket.io": "^4.8.3"
   },
   "name": "newkahoot",
@@ -15,7 +12,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -27,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/amin/newkahoot/issues"
   },
-  "homepage": "https://github.com/amin/newkahoot#readme"
+  "homepage": "https://github.com/amin/newkahoot#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
 }
