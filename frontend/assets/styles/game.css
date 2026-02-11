@@ -68,19 +68,17 @@ body {
 /* --- Questions Design --- */
 
 #game-screen {
-    display: grid;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-    justify-items: center;
 }
 
 
 #question-text {
     font-size: 2.2rem;
-    margin: 40px;
+    margin: 70px 0;
     text-align: center;
-    padding: 0 20px;
+    padding: 0;
     text-shadow: 0 0 10px rgba(233, 69, 96, 0.3); /* Subtle pink glow */
 }
 
@@ -88,7 +86,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    width: 90%;
+    /* width: 90%; */
     max-width: 900px;
 }
 
@@ -142,10 +140,11 @@ body {
     #answer-options {
         grid-template-columns: 1fr;
         margin: auto;
+        width: 90%;
     }
     #question-text {
         font-size: 1.6rem;
-        margin-top: 90px;
+        margin: 100px 20px 40px 20px;
     }
 }
 
