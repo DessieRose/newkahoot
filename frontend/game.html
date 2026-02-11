@@ -154,19 +154,17 @@
     });
 
     socket.on("gameEnd", (leaderboard) => {
-      // Hide game screen
       document.getElementById("game-screen").classList.add("hidden");
-      // Show winner screen
       document.getElementById("winner-screen").classList.remove("hidden");
 
       const board = document.getElementById("leaderboard");
       board.innerHTML = leaderboard
         .map(
           (player, index) => `
-          <div class="winner-row ${index === 0 ? "first-place" : ""}">
-              <span>${index + 1}. ${player[1].name}</span>
-              <span>${player[1].score} pts</span>
-          </div>
+        <div class="winner-row ${index === 0 ? "first-place" : ""}">
+          <span>${index + 1}. ${player.name}</span>
+          <span>${player.score} pts</span>
+        </div>
       `,
         )
         .join("");
