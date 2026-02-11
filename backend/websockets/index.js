@@ -33,7 +33,7 @@ export function startGameserver(server) {
       io.emit("newQuestion", question);
       questionTimer = setTimeout(nextQuestion, question.timeLimit * 1000);
     } else {
-      game.setStatus("idle");
+      game.setStatus("Idle");
       broadcastStatus();
       io.emit("gameEnd", game.leaderboard);
       game.reset();
@@ -65,7 +65,7 @@ export function startGameserver(server) {
       }
 
       console.log("🎮 Game starting!");
-      game.setStatus("active");
+      game.setStatus("Active");
       broadcastStatus();
       io.emit("gameStarted");
       nextQuestion();

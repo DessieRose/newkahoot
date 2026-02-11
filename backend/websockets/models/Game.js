@@ -1,16 +1,15 @@
 export default class Game {
-  static STATUSES = ["idle", "active"];
+  static STATUSES = ["Idle", "Active"];
 
   #players = new Map();
   #questions;
-  #status = "idle";
+  #status = "Idle";
   #currentQuestionIndex = 0;
 
   constructor(questions) {
     this.#questions = questions;
   }
 
-  // Status
   get status() {
     return this.#status;
   }
@@ -25,7 +24,6 @@ export default class Game {
     return this.#status;
   }
 
-  // Players
   get playerCount() {
     return this.#players.size;
   }
@@ -59,7 +57,6 @@ export default class Game {
     return true;
   }
 
-  // Questions
   getQuestion() {
     if (this.#currentQuestionIndex >= this.#questions.length) {
       return null;
@@ -67,7 +64,6 @@ export default class Game {
     return this.#questions[this.#currentQuestionIndex++];
   }
 
-  // Game control
   reset() {
     this.#players.clear();
     this.#currentQuestionIndex = 0;
