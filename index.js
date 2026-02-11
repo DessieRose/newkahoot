@@ -18,6 +18,8 @@ const port = process.env.PORT || 3500;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(staticPath));
+app.set("trust proxy", 1);
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -25,6 +27,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       maxAge: 1000 * 60 * 60 * 24,
     },
   }),
