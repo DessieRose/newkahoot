@@ -84,6 +84,6 @@ export default class Game {
   reset() {
     this.#players.clear();
     this.#currentQuestionIndex = 0;
-    this.#status = "idle";
+    this.setStatus("Idle");
   }
 }
