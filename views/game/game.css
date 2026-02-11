@@ -204,18 +204,58 @@ body {
 .winner-row {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    align-items: center;
+    padding: 15px 20px;
     margin: 10px auto;
+    background: var(--card-bg);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
     width: 300px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
 }
 
-.first-place {
-    background: #f1c40f; /* Gold */
-    color: #000;
-    transform: scale(1.1);
+.rank-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.rank-number {
     font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+.gold-rank {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    transform: scale(1.05); /* Make the winner slightly larger */
+}
+.gold-rank .rank-number, .gold-rank .player-score {
+    color: #ffd700;
+    text-shadow: 0 0 8px #ffd700;
+}
+
+.silver-rank {
+    border-color: #c0c0c0;
+    box-shadow: 0 0 12px rgba(192, 192, 192, 0.3);
+}
+.silver-rank .rank-number, .silver-rank .player-score {
+    color: #c0c0c0;
+    text-shadow: 0 0 8px #c0c0c0;
+}
+
+.bronze-rank {
+    border-color: #cd7f32;
+    box-shadow: 0 0 10px rgba(205, 127, 50, 0.3);
+}
+.bronze-rank .rank-number, .bronze-rank .player-score {
+    color: #cd7f32;
+    text-shadow: 0 0 8px #cd7f32;
+}
+
+.standard-rank {
+    border-color: var(--accent);
+    opacity: 0.8;
 }
 
 .btn-play-again {
@@ -230,4 +270,8 @@ body {
     cursor: pointer;
     font-size: 1rem;
     transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-play-again:hover {
+    transform: translateY(-2px);
 }

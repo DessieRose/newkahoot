@@ -129,13 +129,21 @@ socket.on("gameEnd", (leaderboard) => {
 
   const board = document.getElementById("leaderboard");
   board.innerHTML = leaderboard
-    .map(
-      (player, index) => `
-        <div class="winner-row ${index === 0 ? "first-place" : ""}">
-          <span>${index + 1}. ${player.name}</span>
-          <span>${player.score} pts</span>
+    .map((player, index) => {
+      let rankClass = "standard-rank";
+      if (index === 0) rankClass = "gold-rank";
+      else if (index === 1) rankClass = "silver-rank";
+      else if (index === 2) rankClass = "bronze-rank";
+
+      return `
+        <div class="winner-row ${rankClass}">
+          <div class="rank-info">
+            <span class="rank-number">${index + 1}.</span>
+            <span class="player-name">${player.name}</span>
+          </div>
+          <span class="player-score">${player.score} pts</span>
         </div>
-      `,
-    )
+      `;
+    })
     .join("");
 });

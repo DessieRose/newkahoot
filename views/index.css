@@ -85,6 +85,10 @@ body {
     transition: transform 0.2s, background-color 0.2s;
 }
 
+.btn-index:hover {
+    transform: translateY(-2px);
+}
+
 .error-text {
     color: var(--text-pink);
     font-size: 0.85rem;
