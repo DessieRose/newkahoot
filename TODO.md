@@ -10,15 +10,9 @@
 
 ### Features
 
-- [] Admin page, Add or remove questions & answers
-
-
 ### Other
 
-
-
 - [] When admin presses start game, delay before the game starts
-
 
 
 ## In Progress
