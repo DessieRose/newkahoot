@@ -39,7 +39,7 @@
       const errorDisplay = document.getElementById("error-message");
       const nicknameInput = document.getElementById("name");
       const formId = document.getElementById("your-form-id");
-      const socket = io("http://localhost:3000");
+      const socket = io();
       const form = document.getElementById("join-form");
 
       form.addEventListener("submit", (e) => {

@@ -1,7 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const name = params.get("name");
-
-const socket = io("http://localhost:3000");
+const socket = io();
 
 let countdownInterval;
 

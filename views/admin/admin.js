@@ -1,4 +1,4 @@
-const socket = io("http://localhost:3000");
+const socket = io();
 
 document.getElementById("start-btn").addEventListener("click", () => {
   // We send a specific signal to the server to begin the game loop
