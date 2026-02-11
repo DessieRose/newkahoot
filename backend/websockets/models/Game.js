@@ -49,7 +49,7 @@ export default class Game {
 
     return grouped.map((group) => ({
       score: group.score,
-      name: group.names.join(" || "),
+      name: group.names.join(" & "),
     }));
   }
 
