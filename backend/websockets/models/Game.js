@@ -1,5 +1,5 @@
 export default class Game {
-  static STATUSES = ["Idle", "Active"];
+  static STATUSES = ["Idle", "Starting", "Active"];
 
   #players = new Map();
   #questions;

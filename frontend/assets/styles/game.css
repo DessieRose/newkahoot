@@ -24,6 +24,16 @@ body {
     margin-top: 3rem;
 }
 
+.countdown-number {
+  font-size: 8rem;
+  font-weight: bold;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
 
 #bubble-container {
     position: relative;

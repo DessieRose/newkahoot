@@ -4,14 +4,13 @@ import Game from "./models/Game.js";
 import Player from "./models/Player.js";
 import { questions } from "./data/questions.js";
 
-const game = new Game(questions);
-
 export function startGameserver(server) {
   const io = new Server(server, {
     wsEngine: eiows.Server,
     cors: { origin: "*" },
   });
 
+  const game = new Game(questions);
   let currentAnswers = new Map();
   let questionTimer = null;
 
@@ -41,12 +40,14 @@ export function startGameserver(server) {
   }
 
   io.on("connection", (socket) => {
-    socket.emit("status_update", { message: game.status });
+    broadcastStatus();
+    broadcastUsers();
 
     socket.on("joinGame", (playerName, callback) => {
       if (!playerName?.trim()) {
         return callback?.({ success: false, error: "Name required" });
       }
+
       if (!game.checkNameAvailability(playerName)) {
         return callback?.({ success: false, error: "Name already taken" });
       }
@@ -64,12 +65,25 @@ export function startGameserver(server) {
         });
       }
 
-      console.log("🎮 Game starting!");
-      game.setStatus("Active");
+      console.log("🎮 Game starting in 3 seconds!");
+      game.setStatus("Starting");
       broadcastStatus();
-      io.emit("gameStarted");
-      nextQuestion();
       callback?.({ success: true });
+
+      function countdown(seconds) {
+        io.emit("countdown", seconds);
+
+        if (seconds > 0) {
+          setTimeout(() => countdown(seconds - 1), 1000);
+        } else {
+          game.setStatus("Active");
+          broadcastStatus();
+          io.emit("gameStarted");
+          nextQuestion();
+        }
+      }
+
+      countdown(3);
     });
 
     socket.on("checkName", (name, callback) => {

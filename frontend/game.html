@@ -153,6 +153,31 @@
       window.location.reload();
     });
 
+    socket.on("countdown", (seconds) => {
+      const lobby = document.getElementById("lobby-screen");
+
+      if (seconds > 0) {
+        lobby.innerHTML = `
+      <h1>Game Starting!</h1>
+      <p class="countdown-number">${seconds}</p>
+    `;
+      } else {
+        lobby.innerHTML = `
+      <h1>GO!</h1>
+    `;
+      }
+    });
+
+    socket.on("gameStarted", () => {
+      document.getElementById("lobby-screen").classList.add("hidden");
+      document.getElementById("game-screen").classList.remove("hidden");
+    });
+
+    socket.on("rejoinGame", () => {
+      document.getElementById("lobby-screen").classList.add("hidden");
+      document.getElementById("game-screen").classList.remove("hidden");
+    });
+
     socket.on("gameEnd", (leaderboard) => {
       document.getElementById("game-screen").classList.add("hidden");
       document.getElementById("winner-screen").classList.remove("hidden");

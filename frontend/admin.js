@@ -12,6 +12,8 @@ document.getElementById("start-btn").addEventListener("click", () => {
 document.getElementById("restart-btn").addEventListener("click", () => {
   if (confirm("Are you sure? This will kick all players and reset scores.")) {
     socket.emit("admin_restart_system");
+    document.querySelector(".active-question").innerText =
+      "Game has not started yet. ";
   }
 });
 
