@@ -3,6 +3,7 @@
     "dotenv": "^17.2.3",
     "eiows": "^8.2.0",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "mongodb": "^7.0.0",
     "mongoose": "^9.1.5",
     "nodemon": "^3.1.11",
