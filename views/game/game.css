@@ -147,18 +147,6 @@ body {
 }
 
 
-@media (max-width: 600px) {
-    #answer-options {
-        grid-template-columns: 1fr;
-        margin: auto;
-        width: 90%;
-    }
-    #question-text {
-        font-size: 1.6rem;
-        margin: 100px 20px 40px 20px;
-    }
-}
-
 /* --- Clock countdown --- */
 #timer-container {
     position: absolute;
@@ -195,10 +183,9 @@ body {
 
 /* --- Winner screen --- */
 #winner-screen {
+    max-width: 800px;
+    margin: 3rem auto auto auto;
     text-align: center;
-    padding: 50px;
-    color: white;
-    height: 100vh;
 }
 
 .winner-row {
@@ -274,4 +261,22 @@ body {
 
 .btn-play-again:hover {
     transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    #answer-options {
+        grid-template-columns: 1fr;
+        margin: auto;
+        width: 90%;
+    }
+    #question-text {
+        font-size: 1.6rem;
+        margin: 100px 20px 40px 20px;
+    }
+    #winner-screen {
+        max-width: 600px;
+    }
+    .winner-row {
+        width: 250px;
+    }
 }
