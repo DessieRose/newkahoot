@@ -175,3 +175,5 @@ export default class Game {
     this.#io.emit("reloadPage");
   }
 }
+
+// Comment: this coment is for code review purposes.
