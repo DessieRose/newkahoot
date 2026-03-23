@@ -110,7 +110,7 @@ export default class Game {
     }
 
     this.#currentQuestion = this.#questions[this.#currentQuestionIndex++];
-    console.log("📤 Sending question:", this.#currentQuestion.question);
+    console.log("Sending question:", this.#currentQuestion.question);
     this.#io.emit("newQuestion", this.#currentQuestion);
     this.#questionTimer = setTimeout(
       () => this.nextQuestion(),
@@ -128,7 +128,7 @@ export default class Game {
 
     this.#currentAnswers.set(socketId, answer);
     if (this.#currentAnswers.size === this.playerCount) {
-      console.log("✅ All players answered!");
+      console.log("All players answered!");
       this.nextQuestion();
     }
   }
@@ -141,7 +141,7 @@ export default class Game {
       });
     }
 
-    console.log("🎮 Game starting in 3 seconds!");
+    console.log("Game starting in 3 seconds!");
     this.#setStatus("Starting");
     callback?.({ success: true });
 
@@ -170,8 +170,10 @@ export default class Game {
   }
 
   restart() {
-    console.log("🔄 Restarting game...");
+    console.log("Restarting game...");
     this.reset();
     this.#io.emit("reloadPage");
   }
 }
+
+// Comment: this coment is for code review purposes.
